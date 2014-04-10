@@ -60,9 +60,6 @@ long eval(mpc_ast_t* t) {
     }
 
     /* Iterate the remaining children, combining using our operator */
-    if (strcmp(op, "-") == 0 && !(strstr(t->children[3]->tag, "expr"))) {
-        return -x;
-    }
     int i = 3;
     while (strstr(t->children[i]->tag, "expr")) {
         x = eval_op(x, op, eval(t->children[i]));
