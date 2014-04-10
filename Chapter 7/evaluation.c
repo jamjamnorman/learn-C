@@ -54,6 +54,11 @@ long eval(mpc_ast_t* t) {
     /* We store the third child in `x` */
     long x = eval(t->children[2]);
 
+    /* Check for unary negation */
+    if (strcmp(op, "-") == 0 && !(strstr(t->children[3]->tag, "expr"))) {
+        return -x;
+    }
+
     /* Iterate the remaining children, combining using our operator */
     if (strcmp(op, "-") == 0 && !(strstr(t->children[3]->tag, "expr"))) {
         return -x;
